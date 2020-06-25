@@ -87,8 +87,21 @@ x <- read.delim('tomtom_merged_clusts_euclidean.fwd+rev.aligned.tsv')
 ggplot(x, aes(x=identity, y=haplotype.score, color=group)) + geom_density_2d(h=c(0.1,10)) + geom_point(alpha=I(1/3))
 ```
 
-## plots and images
+The resulting plot:
 
-Gfaviz
+![](https://github.com/ekg/poa-motifs/blob/master/tomtom_merged_clusts_euclidean.fwd+rev.aligned.tsv.png)
+
+## graph visualizations
+
+### Gfaviz
 
 ![](https://github.com/ekg/poa-motifs/blob/master/tomtom_merged_clusts_euclidean.spoa.prune-Tm5_3x.gfa.gfaviz.png)
+
+### vg view, neato
+
+![](https://github.com/ekg/poa-motifs/blob/master/tomtom_merged_clusts_euclidean.spoa.prune-Tm5_3x.gfa.neato.png)
+
+### vg view, dot
+
+![](https://github.com/ekg/poa-motifs/blob/master/tomtom_merged_clusts_euclidean.spoa.prune-Tm5_3x.gfa.dot.png)
+
