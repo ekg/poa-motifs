@@ -91,4 +91,4 @@ ggplot(x, aes(x=identity, y=haplotype.score, color=group)) + geom_density_2d(h=c
 
 Gfaviz
 
-[](https://github.com/ekg/poa-motifs/blob/master/tomtom_merged_clusts_euclidean.spoa.prune-Tm5_3x.gfa.gfaviz.png)
+![](https://github.com/ekg/poa-motifs/blob/master/tomtom_merged_clusts_euclidean.spoa.prune-Tm5_3x.gfa.gfaviz.png?raw=true)
