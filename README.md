@@ -21,6 +21,23 @@ If the reverse complement of a sequence aligns better, we include that in the gr
 spoa tomtom_merged_clusts_euclidean.fa -GCR >tomtom_merged_clusts_euclidean.spoa.gfa
 ```
 
+## graph pruning with odgi
+
+We can remove tips from the graph that have less than a given coverage.
+This is repeated 3x to prune back the extremes of the graph.
+
+```
+odgi build -g tomtom_merged_clusts_euclidean.spoa.gfa -o - \
+    | odgi prune -T -m 5 -i - -o - \
+    | odgi prune -T -m 5 -i - -o - \
+    | odgi prune -T -m 5 -i - -o - \
+    | odgi sort -i - -o - -p sYgs \
+    | odgi view -i - -g >tomtom_merged_clusts_euclidean.spoa.prune-Tm5_3x.gfa
+```
+
+I plan to also prune low-coverage internal components, but doing this will require splitting the paths embedded in the graph.
+This is not yet supported by `odgi prune`.
+
 ## indexing the graph with vg
 
 We then build several index structures that `vg map` requires.
@@ -55,7 +72,7 @@ Haplotype scoring is provided by an extension of the [sublinear Li and Stephens 
 To ensure that our matching isn't random, we can simply reverse the sequences and check how well they map.
 This gives us the same base content and length while disrupting the sequences.
 
-First, reverse the sequences:\
+First, reverse the sequences:
 
 ```
 cat merged_cluster_tomtom_results/tomtom_merged_clusts_euclidean.tsv | tail -n+2 | cut -f 8 | awk '{ print length($1), $0 }' | sort -nr | awk '{ print $2 }' | rev | awk '{ print ">seq_"NR; print $1; }' | head -286 >tomtom_merged_clusts_euclidean.rev.fa
